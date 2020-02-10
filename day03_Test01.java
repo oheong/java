@@ -13,7 +13,7 @@ public class Test01 {
 		if (y < 0 || N <= y || x < 0 || N <= x) return;
 
 		while (true) {
-			if (map[y][x] == 'S') {// ¿ä±â¶û
+			if (map[y][x] == 'S') {// Â¿Ã¤Â±Ã¢Â¶Ã»
 				Answer++;
 				y += dy[dir];
 				x += dx[dir];
