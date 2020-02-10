@@ -30,18 +30,18 @@ public class Test02 {
 	public static void main(String[] args) throws Exception {
 		System.setIn(new FileInputStream("test02.txt"));
 		Scanner sc = new Scanner(System.in);
-		int T = sc.nextInt();// Å×½ºÆ® ÄÉÀÌ½º ¼ö
+		int T = sc.nextInt();// í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤ ìˆ˜
 
 		for (int t = 1; t <= T; t++) {
-			N = sc.nextInt(); // ¹è¿­ÀÇ Å©±â NxN
+			N = sc.nextInt(); // ë°°ì—´ì˜ í¬ê¸° NxN
 			int[][] lake = new int[N][N];
 
-			S = sc.nextInt();// ¼Ò±İÀïÀÌ(Strider)¼ö
+			S = sc.nextInt();// ì†Œê¸ˆìŸì´(Strider)ìˆ˜
 			int[][] strider = new int[S][3];
 			for (int k = 0; k < S; k++) {
-				strider[k][0] = sc.nextInt();// ÇàÀ§Ä¡
-				strider[k][1] = sc.nextInt();// ¿­À§Ä¡
-				strider[k][2] = sc.nextInt();// ¹æÇâ(1:ÇÏ,2:¿ì)
+				strider[k][0] = sc.nextInt();// í–‰ìœ„ì¹˜
+				strider[k][1] = sc.nextInt();// ì—´ìœ„ì¹˜
+				strider[k][2] = sc.nextInt();// ë°©í–¥(1:í•˜,2:ìš°)
 			}
 
 			for (int i = 0; i < S; i++)
