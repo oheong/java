@@ -3,11 +3,8 @@ package com.ssafy.java.day02_07WS;
 public class Magazine extends Book {
 	private int month;
 
-	Magazine() {
-	}
-
-	public Magazine(int month) {
-		super();
+	public Magazine(String isbn, String title, int price, int quantity, int month) {
+		super(isbn, title, price, quantity);
 		this.month = month;
 	}
 
@@ -20,7 +17,7 @@ public class Magazine extends Book {
 	}
 
 	public String toString() {
-		return super.getIsbn() + ", " + super.getTitle() + ", " + super.getPrice() + ", " + getQuantity() + ", "
+		return super.getIsbn() + "\t| " + super.getTitle() + "\t| " + super.getPrice() + "\t| " + getQuantity() + "\t| "
 				+ getMonth() + ".";
 	}
 }
