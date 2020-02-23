@@ -1,10 +1,12 @@
 package com.ssafy.java.day02_07WS;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BookMgrImpl implements IBookMgr {
@@ -67,7 +69,7 @@ public class BookMgrImpl implements IBookMgr {
 	public int getTotalAmount() {
 		int sum = 0;
 		for (int i = 0; i < book.size(); i++) {
-			sum += book.get(i).getPrice();
+			sum += (book.get(i).getPrice()*book.get(i).getQuantity());
 		}
 		return sum;
 	}
@@ -75,8 +77,21 @@ public class BookMgrImpl implements IBookMgr {
 	public void open() {
 		try {
 			fr = new FileReader("book.dat");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			BufferedReader in = new BufferedReader(fr);
+			String s;
+			while ((s = in.readLine()) != null) {
+				String[] temp = s.split("/");
+				int tempPrice = Integer.parseInt(temp[2]);
+				int tempQuantity = Integer.parseInt(temp[3]);
+				if (temp.length == 4) // book
+					inputData(new Book(temp[0], temp[1], tempPrice, tempQuantity));
+
+				else {
+					int tempMonth = Integer.parseInt(temp[4]);
+					inputData(new Magazine(temp[0], temp[1], tempPrice, tempQuantity, tempMonth));
+				}
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -90,110 +105,4 @@ public class BookMgrImpl implements IBookMgr {
 			e.printStackTrace();
 		}
 	}
-//	// Isbn으로 정보를 검색하는 기능
-//	public List<Book> searchIsbn(String isbn) {
-//		List<Book> returnIsbn = new ArrayList<>();
-//		System.out.println("==========Isbn 검색 기능==========");
-//		for (int i = 0; i < book.size(); i++) {
-//			if (book.get(i).getIsbn().equals(isbn)) {
-//				returnIsbn.add(book.get(i));
-//			}
-//		}
-//		return returnIsbn;
-//	}
-//
-//	// Title로만 정보를 검색하는 기능 (파라메터로 주어진 제목을 포함하는 모든 정보)
-//	public List<Book> searchTitle(String title) {
-//		List<Book> returnTitle = new ArrayList<>();
-//		System.out.println("==========Title 검색 기능==========");
-//		for (int i = 0; i < book.size(); i++) {
-//			if (book.get(i).getTitle().contains(title)) {
-//				returnTitle.add(book.get(i));
-//			}
-//		}
-//		return returnTitle;
-//	}
-//
-//	// Book만 검색하는 기능
-//	public List<Book> searchBook() {
-//		List<Book> returnBook = new ArrayList<>();
-//		System.out.println("==========Book 전체 검색 기능==========");
-//		for (int i = 0; i < book.size(); i++) {
-//			if (book.get(i) instanceof Magazine)
-//				continue;
-//			returnBook.add(book.get(i));
-//		}
-//		return returnBook;
-//	}
-//
-//	// Magazine만 검색하는 기능
-//	public List<Book> searchMagazine() {
-//		List<Book> returnMagazine = new ArrayList<>();
-//		System.out.println("==========Magazine 전체 검색 기능==========");
-//		for (int i = 0; i < book.size(); i++) {
-//			if (book.get(i) instanceof Magazine) {
-//				returnMagazine.add(book.get(i));
-//			}
-//		}
-//		return returnMagazine;
-//	}
-//
-//	// 출판사로 검색하는 기능
-//	public List<Book> searchPub(String pub) {
-//		List<Book> returnPub = new ArrayList<>();
-//		System.out.println("==========출판사 검색 기능==========");
-//		for (int i = 0; i < book.size(); i++) {
-//			if (book.get(i).getPublisher().equals(pub)) {
-//				returnPub.add(book.get(i));
-//			}
-//		}
-//		return returnPub;
-//	}
-//
-//	// 가격으로 검색하는 기능(파라메터로 주어진 가격보다 낮은 도서 검색
-//	public List<Book> searchUnderPrice(int price) {
-//		List<Book> returnPrice = new ArrayList<>();
-//		System.out.println("==========가격 검색 기능==========");
-//		for (int i = 0; i < book.size(); i++) {
-//			if (book.get(i).getPrice() <= price) {
-//				returnPrice.add(book.get(i));
-//			}
-//		}
-//		return returnPrice;
-//	}
-//
-//	// 저장된 모든 도서의 금액을 구하는 기능
-//	public List<Book> totalPrice() {
-//		System.out.println("==========모든 도서 금액 검색 기능==========");
-//		List<Book> returnTotalPrice = new ArrayList<>();
-//		for (int i = 0; i < book.size(); i++) {
-//			returnTotalPrice.add(book.get(i));
-//		}
-//		return returnTotalPrice;
-//	}
-//
-//	// 저장된 모든 도서의 평균을 구하는 기능
-//	public List<Book> avg() {
-//		System.out.println("==========평균 검색 기능==========");
-//		List<Book> returnAvg = new ArrayList<>();
-//		for (int i = 0; i < book.size(); i++) {
-//			returnAvg.add(book.get(i));
-//		}
-//		return returnAvg;
-//	}
-//
-//	@Override
-//	public List<Book> searchThisYear(int year) {
-//		List<Book> returnThisYear = new ArrayList<>();
-//		System.out.println("==========올해의 잡지==========");
-//		for (int i = 0; i < book.size(); i++) {
-//			if (book.get(i) instanceof Magazine) {
-//				Magazine m = (Magazine) book.get(i);
-//				if (m.getYear() == year) {
-//					returnThisYear.add(book.get(i));
-//				}
-//			}
-//		}
-//		return returnThisYear;
-//	}
 }
