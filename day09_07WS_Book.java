@@ -48,8 +48,8 @@ public class Book {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-
+	
 	public String toString() {
-		return getIsbn() + ", " + getTitle() + ", " + getPrice() + ", " + getQuantity() + ".";
+		return getIsbn() + "\t| " + getTitle() + "\t| " + getPrice() + "\t| " + getQuantity() + ".";
 	}
 }
